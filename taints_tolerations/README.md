@@ -118,12 +118,13 @@ example-7fdf6f7cb-q42qc   0/1     Pending   0          23s   <none>   <none>   <
 [root@bastion NodoSelector]#
 ```
 
-//Agrego la tolerancia al deployment
-//edito el deploy actual o modifico el archivo deploy.yaml y lo vuelvo a aplicar.
-//Entiendo que es mejor modificar el deploy actual.
+Agrego la tolerancia al deployment
+Modifico el manifiesto deploy.yaml y lo vuelvo a aplicar o reemplazar (Opcion1),o edito el deploymente actual (OPTION 2).
+Entiendo que es mejor modificar el deploy actual.
 
-//OPCION 1
-//Agrego en el deploy.yaml las tolerations.
+OPCION 1
+Agrego en el deploy.yaml las tolerations.
+
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -168,8 +169,9 @@ replicaset.apps/example-7fdf6f7cb    0         0         0       11m
 [root@bastion NodoSelector]#
 ```
 
-//OPCION 2
-//Edito el deploy actualy le agrego las tolerancias.
+OPCION 2
+Edito el deploy actual y le agrego las tolerancias.
+
 ```
 [root@bastion NodoSelector]# oc get all
 NAME                          READY   STATUS    RESTARTS   AGE
@@ -182,9 +184,6 @@ deployment.apps/example   0/2     2            0           4s
 NAME                                DESIRED   CURRENT   READY   AGE
 replicaset.apps/example-7fdf6f7cb   2         2         0       4s
 [root@bastion NodoSelector]#
-```
-
-```
 [root@bastion NodoSelector]# oc edit deployment.apps/example
 .............
   template:
@@ -205,6 +204,9 @@ replicaset.apps/example-7fdf6f7cb   2         2         0       4s
         ports:
 .............
 ```
+
+Verifico que se vuelvan a deplegar los pods.
+
 ```
 [root@bastion NodoSelector]# oc get all
 NAME                           READY   STATUS              RESTARTS   AGE
@@ -236,7 +238,7 @@ replicaset.apps/example-7fdf6f7cb    0         0         0       13m
 [root@bastion NodoSelector]#
 ```
 
-//borro las manchas en los nodos
+Borro las manchas en los nodos para dejarlos con su configuración inicial
 ```
 [root@bastion NodoSelector]# oc adm taint node prev-rkh2g-worker-s6grv key1=value1:NoSchedule-
 node/prev-rkh2g-worker-s6grv untainted
