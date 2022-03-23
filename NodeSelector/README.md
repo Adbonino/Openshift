@@ -166,7 +166,7 @@ example-6854446bb6-qc5vd   1/1     Running   0          20s   10.128.2.68   prev
 
 Que pasa si el Pods no encuentra un nodo etiquetado?
 
-cambiemos al etiqueta en el daployment:
+cambiemos las etiquetas en el deployment:
       nodeSelector:
         Nodo: tiponull
 
