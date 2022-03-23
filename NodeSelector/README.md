@@ -167,9 +167,10 @@ example-6854446bb6-qc5vd   1/1     Running   0          20s   10.128.2.68   prev
 Que pasa si el Pods no encuentra un nodo etiquetado?
 
 cambiemos las etiquetas en el deployment:
+```
       nodeSelector:
         Nodo: tiponull
-
+```
 ```
 [root@bastion NodoSelector]# oc edit deployment.apps/example
 .............
@@ -241,7 +242,7 @@ spec:
 [root@bastion NodoSelector]# oc apply -f deploy.yaml
 deployment.apps/example created
 ```
-Veririficación
+Verificación
 ```
 [root@bastion NodoSelector]# oc get pods -o wide
 NAME                      READY   STATUS    RESTARTS   AGE   IP            NODE                      NOMINATED NODE   READINESS GATES
@@ -259,7 +260,7 @@ Borro la anotación.
 
 ## Etiquetas conocidas
 
-nodeSelector es una de las formas más fáciles de controlar dónde se iniciará una aplicación. Por lo tanto, trabajar con etiquetas es muy importante tan pronto como se agregue carga de trabajo al clúster. Kubernetes reserva algunas etiquetas que se pueden aprovechar y algunas ya están predefinidas en los nodos, por ejemplo:
+Hay algunas etiquetas que se pueden aprovechar y algunas ya están predefinidas en los nodos:
 
     beta.kubernetes.io/arch=amd64
 
@@ -272,7 +273,7 @@ nodeSelector es una de las formas más fáciles de controlar dónde se iniciará
     node.openshift.io/os_id=rhcos
 
 
-Dos de ellos me gustaría mencionar aquí, ya que pueden llegar a ser muy importantes al diseñar la ubicación de las vainas:
+Hay dos etiquetas que se pueden ustilizar para la ubicación de los Pods:
 
     topology.kubernetes.io/zone
 
